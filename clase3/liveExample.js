@@ -7,9 +7,9 @@ const callbackPromesa = (resolve) => {
 
 const miPromesa = new Promise(callbackPromesa);
 
-//primero en ejecutarse el .then
+//primero en ejecutarse el .then (suscripcion a la promesa)
 miPromesa.then(console.log);
 //por ultimo se ejecuta el console.log
 
 //esto va a aparecer primero en la consola, ya que estamos trabajando con codigo asincrono.
-console.log('Hola desde el hilo principal')
+console.log('Hola desde el hilo principal, que no se encuentra bloqueado.')
