@@ -1,4 +1,9 @@
-const callbackPromesa = (resolve) => console.log('Promesa resuelta')
+const callbackPromesa = (resolve) => {
+    const cb = () => {
+        resolve('Promesa resuelta')
+    }
+    setTimeout(cb,2000)
+}
 
 const miPromesa = new Promise(callbackPromesa);
 
