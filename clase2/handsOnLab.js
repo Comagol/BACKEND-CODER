@@ -1,19 +1,24 @@
 class TicketManager {
+    // con el # hacemos que sean privadas
+    #eventos;
+    #baseDeGanancia;
+    #currentID;
+
     constructor() {
-        this.eventos = []; // Array donde vamos a almacenar los eventos
-        this.baseDeGanancia = 0.15; // Margen de ganancia sobre el precio
-        this.currentID = 1; // ID autoincrementable para los eventos
+        this.#eventos = []; // Array donde vamos a almacenar los eventos
+        this.#baseDeGanancia = 0.15; // Margen de ganancia sobre el precio
+        this.#currentID = 1; // ID autoincrementable para los eventos
     }
 
     getEventos() {
-        return this.eventos;
+        return this.#eventos;
     }
 
     agregarEvento(nombre, lugar, precio, capacidad = 50, fecha = new Date()) {
-        const precioFinal = precio * (1 + this.baseDeGanancia); // Aplica el margen de ganancia
+        const precioFinal = precio * (1 + this.#baseDeGanancia); // Aplica el margen de ganancia
         
         const nuevoEvento = {
-            id: this.currentID++, // ID autoincrementable
+            id: this.#currentID++, // ID autoincrementable
             nombre,
             lugar,
             precio: precioFinal,
@@ -22,11 +27,11 @@ class TicketManager {
             participantes: []
         };
 
-        this.eventos.push(nuevoEvento);
+        this.#eventos.push(nuevoEvento);
     }
 
     agregarUsuario(idEvento, idUsuario) {
-        const evento = this.eventos.find(evento => evento.id === idEvento);
+        const evento = this.#eventos.find(evento => evento.id === idEvento);
 
         if (!evento) {
             console.log("Evento no encontrado.");
@@ -42,7 +47,7 @@ class TicketManager {
     }
 
     ponerEventoEnGira(idEvento, nuevaLocalidad, nuevaFecha) {
-        const eventoOriginal = this.eventos.find(evento => evento.id === idEvento);
+        const eventoOriginal = this.#eventos.find(evento => evento.id === idEvento);
     
         if (!eventoOriginal) {
             console.log("Evento no encontrado.");
@@ -51,13 +56,13 @@ class TicketManager {
 
         const nuevoEvento = {
             ...eventoOriginal, // Copia todas las propiedades
-            id: this.currentID++, // Nuevo ID único (corregido)
+            id: this.#currentID++, // Nuevo ID único (corregido)
             lugar: nuevaLocalidad, // Actualiza la ubicación
             fecha: nuevaFecha, // Actualiza la fecha
             participantes: [] // Reinicia la lista de participantes
         };
 
-        this.eventos.push(nuevoEvento);
+        this.#eventos.push(nuevoEvento);
     }
 }
 
@@ -70,6 +75,7 @@ manager.agregarEvento("Obra de Teatro", "Córdoba", 1500);
 
 // Mostrar eventos
 console.log(manager.getEventos());
+//console.log(manager.#eventos) demostracion de porque se crean los getter el # hace que los campos sean privados
 
 // Agregar usuarios a eventos
 manager.agregarUsuario(1, 101);
