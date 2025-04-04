@@ -22,3 +22,5 @@ async function procesarCompra(product) {
 };
 
 procesarCompra("banana");
+procesarCompra("pera");
+procesarCompra("televisor");
