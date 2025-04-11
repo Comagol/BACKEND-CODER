@@ -30,7 +30,6 @@ const newProduct = {
     code: "LASN568",
     price: 6800,
     status: true,
-    stock: 5,
     category: "Tecnologia",
     thumbnails: ["img/laptop1.jpg","img/laptop3.jpg"]
 }
@@ -38,5 +37,6 @@ const newProduct = {
 console.log(productos);
 console.log('Producto ID:3', getProductById(3));
 
-addProduct(newProduct);
-console.log(productos);
+//addProduct(newProduct);
+//console.log(productos);
+
