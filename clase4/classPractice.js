@@ -11,7 +11,7 @@ const birthday = moment('2024-04-30', 'YYYY-MM-DD');
 if(!birthday.isValid()) {
     console.log("❌ La fecha no es valida.");
 } else {
-    // Devolvemos la diferencia en dias desde su nacimiento.
+    // Devolvemos la diferencia en dias y segundos desde su nacimiento.
     const daysSinceBirth = actualDate.diff(birthday, "days");
     const secondsSinceBirth = actualDate.diff(birthday, "seconds");
 
