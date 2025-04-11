@@ -1,5 +1,4 @@
 const fs = require('fs');
-const { get } = require('http');
 const path = require('path');
 
 const pathProductos = path.join(__dirname, 'productos.json');
