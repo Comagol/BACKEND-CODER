@@ -33,6 +33,20 @@ class CartManager {
         return newCart;
     }
     
-    
+    addProductToCart(cid, pid) {
+        const carts = this.getCarts();
+        const cartIndex = carts.findIndex(cart => cart.id === cid);
+        if(cartIndex === -1) return false;
+        const productInCart = carts[cartIndex].products.find(p => p.product === pid);
+        if(productInCart) {
+            productInCart.quantity++;
+        } else {
+            carts[cartIndex].products.push({product: pid, quantity: 1});
+        }
+        fs.writeFileSync(this.path, JSON.stringify(carts, null, 2));
+        return true;
+    }
 
 }
+
+module.exports = CartManager;
