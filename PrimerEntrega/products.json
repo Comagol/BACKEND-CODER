@@ -1,1 +1,26 @@
-[]
+[
+  {
+    "title": "Computadora",
+    "description": "Laptop de ultima generacion con detalles gamer",
+    "code": "COMP10",
+    "price": 1600,
+    "status": true,
+    "category": "Tecnologia",
+    "thumbnails": [
+      "img/computadora1.jpg"
+    ],
+    "id": 1
+  },
+  {
+    "title": "Celular",
+    "description": "samsung galaxy a23",
+    "code": "SAM23",
+    "price": 600,
+    "status": true,
+    "category": "Electronica",
+    "thumbnails": [
+      "img/celular1.jpg"
+    ],
+    "id": 2
+  }
+]
