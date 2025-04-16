@@ -13,22 +13,19 @@ app.get('/usuarios', (req,res) =>{
     res.json(usuarios)
 })
 
-app.post('/', (req,res) =>{
-    res.json({
-        msg: "POST"
-    })
+app.post('/usuarios', (req,res) =>{
+    const {nombre, edad} = req.body
+    const nuevoUsuario = {id: usuarios.length + 1, nombre, edad}
+    usuarios.push(nuevoUsuario)
+    res.status(201).json(nuevoUsuario)
 })
 
 app.put('/', (req,res) =>{
-    res.json({
-        msg: "PUT"
-    })
+    res.json()
 })
 
 app.delete('/', (req,res) =>{
-    res.json({
-        msg: "DELETE"
-    })
+    res.json()
 })
 
 app.listen(PORT, () =>{
