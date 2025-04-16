@@ -1,14 +1,16 @@
 const  express = require('express');
-
 const app = express();
+const PORT = 3000;
 
-const PORT = 8080;
+//Middleware para poder trabajar con datos JSON
+app.use(express.json());
+
+//Array
+let usuarios = [];
 
 //Metodos HTTP
-app.get('/', (req,res) =>{
-    res.json({
-        msg: "GET"
-    })
+app.get('/usuarios', (req,res) =>{
+    res.json(usuarios)
 })
 
 app.post('/', (req,res) =>{
