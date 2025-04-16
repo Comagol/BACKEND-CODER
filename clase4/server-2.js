@@ -20,8 +20,16 @@ app.post('/usuarios', (req,res) =>{
     res.status(201).json(nuevoUsuario)
 })
 
-app.put('/', (req,res) =>{
-    res.json()
+app.put("/usuarios/:id", (req,res) =>{
+    const {id} = req.params
+    const {nombre, edad} = req.body
+    const usuario = usuarios.find(u => u.id === parseInt(id))
+    if(!usuario) return res.status(404).json({mensaje: "Usuario no encontrado" })
+
+    //Actualizar los datos
+    usuario.nombre = nombre || usuario.nombre
+    usuario.edad = edad || usuario.edad
+    res.json(usuario)
 })
 
 app.delete('/', (req,res) =>{
