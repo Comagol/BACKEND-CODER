@@ -28,7 +28,7 @@ app.get('/products/:pid', (req,res) =>{
     res.json(product);
 });
 
-app.post('/products/', (req,res) => {
+app.post('/products', (req,res) => {
     const {title, description, price, thumbnail, code, stock} = req.body;
 
     //validacion basica para que los campos esten completos
