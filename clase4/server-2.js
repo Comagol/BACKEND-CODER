@@ -32,8 +32,11 @@ app.put("/usuarios/:id", (req,res) =>{
     res.json(usuario)
 })
 
-app.delete('/', (req,res) =>{
-    res.json()
+app.delete("/usuarios/:id", (req,res) =>{
+    const { id } = req.params
+    usuarios = usuarios.filter(u => u.id !==parseInt(id))
+    res.json({mensaje: "Usuario eliminado."})
+
 })
 
 app.listen(PORT, () =>{
