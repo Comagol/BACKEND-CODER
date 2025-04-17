@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Auriculares",
+    "description": "Auriculares inalámbricos con cancelación de ruido",
+    "price": 250,
+    "thumbnail": "img/auriculares.jpg",
+    "code": "AURI001",
+    "stock": 30,
+    "id": 1
+  },
+  {
+    "title": "Macbook",
+    "description": "Macbook pro m4",
+    "price": 550,
+    "thumbnail": "img/macbookpro.jpg",
+    "code": "Macbook001",
+    "stock": 5,
+    "id": 2
+  }
+]
