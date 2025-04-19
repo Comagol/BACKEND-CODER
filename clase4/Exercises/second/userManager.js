@@ -23,5 +23,48 @@ class UserManager {
         return JSON.parse(data);
     }
 
-    
+    createUser(name, lastname, email, password){
+        const users = this.getUsers();
+        const newUser = {
+            id: users.length > 0 ? users[users.length - 1].id + 1 :1,
+            name,
+            lastname,
+            email,
+            password: this.hashPassword(password)
+        };
+        users.push(newUser);
+        this.saveUsers(users);
+        return newUser;
+    }
+
+    saveUsers(users){
+        fs.writeFileSync(this.path, JSON.stringify(users, null, 2));
+    }
+
+    gerUserById(uId) {
+        const users = this.getUsers();
+        const index = users.find(u => u.id === uId);
+        if(index === -1) return 'Usuario no encontrado';
+        return {user : users[index], index, users};
+    }
+
+    addFavorite (uId, product) {
+        const result = this.gerUserById(uId);
+        if(!result) return 'Usuario no encontrado';
+
+        const {user, index, users} = result;
+
+        if(!user.favorites) {
+            user.favorites = [];
+        }
+
+        user.favorites.push(product);
+        users[index] = user;
+
+        this.saveUsers(users);
+        return 'Producto agregado a favoritos';
+
+    }
 }
+
+module.exports = UserManager;
