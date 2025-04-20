@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "Francisco",
+    "lastname": "Comabella",
+    "email": "fran@example.com",
+    "password": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92",
+    "favorites": [
+      "Zapatillas de trail"
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Fran",
+    "lastname": "perez",
+    "email": "franperez@example.com",
+    "password": "c0034605ea413370d5ad022b8d2f7fe33461bf6d7e5f4ac78f02c27b793673c9",
+    "favorites": [
+      "anteojos Rayban",
+      "Gorra Ripcurl"
+    ]
+  }
+]

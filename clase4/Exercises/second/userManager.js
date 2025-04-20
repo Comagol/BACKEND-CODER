@@ -43,27 +43,28 @@ class UserManager {
 
     gerUserById(uId) {
         const users = this.getUsers();
-        const index = users.find(u => u.id === uId);
-        if(index === -1) return 'Usuario no encontrado';
-        return {user : users[index], index, users};
+        const index = users.findIndex(u => u.id === Number(uId));
+    
+        if(index === -1) return null; 
+    
+        return { user: users[index], index, users };
     }
 
-    addFavorite (uId, product) {
+    addFavorite(uId, product) {
         const result = this.gerUserById(uId);
-        if(!result) return 'Usuario no encontrado';
-
-        const {user, index, users} = result;
-
-        if(!user.favorites) {
+        if (!result) return 'Usuario no encontrado';
+    
+        const { user, index, users } = result;
+    
+        if (!user.favorites) {
             user.favorites = [];
         }
-
+    
         user.favorites.push(product);
         users[index] = user;
-
+    
         this.saveUsers(users);
         return 'Producto agregado a favoritos';
-
     }
 }
 

@@ -24,7 +24,7 @@ app.get('/users', (req,res) => {
 });
 
 app.post('/users/:id/favorites', (req,res) => {
-    const uid = parseInt(req.params.uid);
+    const uid = parseInt(req.params.id);
     const {product} = req.body;
 
     if(!product) {
