@@ -6,8 +6,10 @@ const PORT = 3000;
 const usersRouter = require('./routers/users.router');
 const petsRouter = require('./routers/pets.router');
 
-// Middleware para parsear JSON
+// Middleware para parsear JSON y para llegar a la ruta public
 app.use(express.json());
+app.use(express.urlencoded({ extended: true}));
+app.use(express.static(__dirname + '/public'));
 
 // Montar routers
 app.use('/api/users', usersRouter);

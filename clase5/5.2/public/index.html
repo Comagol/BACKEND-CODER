@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Mascota</title>
+</head>
+<body>
+    <h1>Formulario para agregar mascotas</h1>
+    <form action="/api/pets" method="POST">
+        <label for="name">Nombre:</label>
+        <input type="text" name="name" required>
+        <br>
+        <label for="type">Tipo:</label>
+        <input type="text" name="type" required>
+        <br>
+        <button type="submit">Agregar Mascota</button>
+    </form>
+</body>
+</html>
