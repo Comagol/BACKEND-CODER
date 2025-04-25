@@ -7,13 +7,16 @@
 </head>
 <body>
     <h1>Formulario para agregar mascotas</h1>
-    <form action="/api/pets" method="POST">
+    <form action="/api/pets" method="POST" enctype="multipart/form-data">
         <label for="name">Nombre:</label>
         <input type="text" name="name" required>
         <br>
         <label for="type">Tipo:</label>
         <input type="text" name="type" required>
         <br>
+        <label>Imagen: </label>
+        <input type="file" name="file" required/>
+        <br/>
         <button type="submit">Agregar Mascota</button>
     </form>
 </body>

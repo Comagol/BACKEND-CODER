@@ -10,6 +10,7 @@ const petsRouter = require('./routers/pets.router');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
 app.use(express.static(__dirname + '/public'));
+app.use('/uploads', express.static(__dirname + '/uploads'));
 
 // Montar routers
 app.use('/api/users', usersRouter);
