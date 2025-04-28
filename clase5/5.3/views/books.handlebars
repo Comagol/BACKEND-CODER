@@ -1,0 +1,15 @@
+<h1>Listado de Libros Registrados</h1>
+
+<ul>
+    {{#each books}}
+    <li>
+        <strong>Titulo:</strong> {{this.title}}
+        <strong>Genero:</strong> {{this.genere}}
+        <strong>Autor ID:</strong> {{this.authorId}}
+        {{#if this.thumbnail}}
+        <br>
+        <img src="{{this.thumbnail}}" alt="Portada del libro" width="100">
+        {{/if}}
+    </li>
+    {{/each}}
+</ul>

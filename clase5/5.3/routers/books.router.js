@@ -31,4 +31,9 @@ router.post('/book', (req,res) => {
     res.status(201).send(`libro ${title} agregado correctamente.`)
 })
 
+//Creo otro metodo get para mostrar la lista de libros en books.handlebars
+router.get('/view', (req,res) => {
+    res.render('books', {books});
+});
+
 module.exports = router;

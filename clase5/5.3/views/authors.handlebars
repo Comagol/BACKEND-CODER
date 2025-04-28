@@ -1,0 +1,12 @@
+<h1>Listado de Autores Registrados</h1>
+
+<ul>
+    {{#each authors}}
+    <li>
+        <strong>Nombre:</strong> {{this.name}}
+        <strong>Email:</strong> {{this.email}}
+        <strong>Edad:</strong> {{this.age}}
+        <strong>ID:</strong> {{this.id}}
+    </li>
+    {{/each}}
+</ul>

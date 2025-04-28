@@ -31,5 +31,10 @@ router.post('/author', (req,res) => {
     res.status(201).send(`autor ${name} agregado correctamente.`)
 });
 
+//Creo otro metodo GET para poder mostrar los autores en la lista de authors.handlebars
+router.get('/view', (req,res) => {
+    res.render('authors', {authors});
+});
+
 // exporto todo con module.export
 module.exports = router;
