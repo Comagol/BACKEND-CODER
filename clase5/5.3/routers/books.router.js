@@ -1,6 +1,19 @@
-// importo express con require
+// importo express y multer con require
 const express = require('express');
+const multer = require('multer');
 
+//Configuracion del Multer
+const storage = multer.diskStorage({
+    destination: function(req, file, cd) {
+        cb(null, 'public/uploads'); //En esta carpeta se guardaran las imagenes
+    },
+    filename: function(req, file , cb) {
+        cb(null, Date.now() + '-' +file.originalname); //nombre unico del archivo
+    }
+});
+
+const upload = multer({ storage })
+;
 //Creo el Router usando express
 const router = express.Router();
 
@@ -12,8 +25,9 @@ router.get('/', (req, res) => {
     res.status(200).json({ books});
 });
 
-router.post('/book', (req,res) => {
-    const { title, genere, thumbnail, authorId } = req.body;
+router.post('/book', upload.single('thumbnail') , (req,res) => {
+    const { title, genere, authorId } = req.body;
+    const thumbnail = req.file ? `uploads/${req.file.filename}` : null;
 
     if (!title || !genere || !thumbnail || !authorId) {
         return res.status(400).send('Todos los campos son obligatorios');
