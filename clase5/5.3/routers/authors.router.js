@@ -13,7 +13,7 @@ router.get('/', (req,res) => {
 });
 
 // Creo el metodo POST para poder crear un nuevo autor
-router.post('/author', (req,res) => {
+router.post('/', (req,res) => {
     const {name, email, age} = req.body;
 
     if (!name || !email || !age) {

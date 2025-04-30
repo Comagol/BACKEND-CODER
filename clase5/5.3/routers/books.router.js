@@ -4,7 +4,7 @@ const multer = require('multer');
 
 //Configuracion del Multer
 const storage = multer.diskStorage({
-    destination: function(req, file, cd) {
+    destination: function(req, file, cb) {
         cb(null, 'public/uploads'); //En esta carpeta se guardaran las imagenes
     },
     filename: function(req, file , cb) {
