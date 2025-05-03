@@ -3,7 +3,7 @@ const express = require('express');
 const http = require('http');
 const path = require('path');
 const { Server } = require('socket.io');
-const exphbs = require('expres-handlebars');
+const exphbs = require('express-handlebars');
 
 // Routers
 const productsRouter = require('./routers/products.router');
