@@ -1,6 +1,7 @@
 const express = require('express');
 const ProductManager = require('../managers/ProductManager');
 const path = require('path');
+const { io } = require('../app');
 
 const router = express.Router();
 
@@ -43,6 +44,10 @@ router.post('/', async (req, res) => {
         status: true,
     });
 
+    //Emito los productos actualizados
+    const products = await productManager.getProducts();
+    io.emit('productsUpdated', products);
+
     res.status(201).json(newProduct);
 });
 
@@ -72,7 +77,10 @@ router.delete('/:pid', async (req, res) => {
 
     if(!deleted) {
         return res.status(404).json({ error: 'Producto no encontrado'})
-    }
+    };
+
+    const products = await productManager.getProducts();
+    io.emit('productsUpdated', products)
 
     res.json({ message: 'Producto eliminado con exito.'})
 });
