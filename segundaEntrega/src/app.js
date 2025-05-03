@@ -9,7 +9,10 @@ const exphbs = require('expres-handlebars');
 const productsRouter = require('./routers/products.router');
 const cartsRouter = require('./routers/carts.router');
 const viewsRouter = require('./routers/views.router');
-const { Socket } = require('dgram');
+
+//importo el productmanager para leer los productos actualizados
+const ProductManager = require('./managers/ProductManager');
+const productManager = new ProductManager(path.join(__dirname, 'products.json'));
 
 const app = express();
 const server = http.createServer(app);
@@ -18,7 +21,7 @@ const io = new Server(server);
 // Middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended : true }));
-app.use(express.static(path.join(__dirname, '../public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Handlebars
 app.engine('handlebars', exphbs.engine());
@@ -31,17 +34,21 @@ app.use('/api/carts', cartsRouter);
 app.use('/', viewsRouter);
 
 // WebSocket
-io.on('connection', socket => {
-    console.log('🧙‍♂️ cliente conecta por Socket.io');
+io.on('connection', async (socket) => {
+    console.log('🧙‍♂️ Cliente conectado por Socket.io');
 
-    //aca va se van a manejar los eventos en tiempo real
+    // Cuando se conecta un cliente, le enviamos los productos actuales
+    const products = await productManager.getProducts();
+    socket.emit('productsUpdated', products);
 
     socket.on('disconnect', () => {
         console.log('Cliente desconectado');
     });
 });
 
-module.exports = { io };
+// Hacemos accesible el io en otros archivos
+app.set('io', io);
+
 
 const PORT = 8080;
 server.listen(PORT, () => {
