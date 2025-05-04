@@ -29,7 +29,7 @@ class ProductManager {
         };
 
         products.push(newProduct)
-        await fs.writefile(this.path, JSON.stringify(products, null, 2));
+        await fs.writeFile(this.path, JSON.stringify(products, null, 2));
         return newProduct;
     }
 

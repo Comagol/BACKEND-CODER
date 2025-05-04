@@ -40,7 +40,7 @@ class CartManager {
         if (cartIndex === -1) return null;
 
         const cart = carts[cartIndex];
-        const productInCart = cart.products.find(p=> p.product === product);
+        const productInCart = cart.products.find(p=> p.product === productId);
 
         if (productInCart) {
             productInCart.quantity +=1;

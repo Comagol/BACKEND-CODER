@@ -9,7 +9,7 @@ const productManager = new ProductManager(
 );
 
 // la ruta home va a mostrar todos los productos actuales
-router.get('/home', async (req, res) => {
+router.get('/', async (req, res) => {
     try{
         const products = await productManager.getProducts();
         res.render('home', {products});

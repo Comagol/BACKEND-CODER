@@ -8,7 +8,7 @@ const cartManager = new CartManager(path.join(__dirname, '../carts.json'));
 
 // POST => para crear un nuevo carrito
 router.post('/', async (req, res) => {
-    const newCart = await cartManager.createCart();
+    const newCart = await cartManager.addCart();
     res.status(201).json(newCart);
 });
 
