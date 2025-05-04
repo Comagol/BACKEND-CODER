@@ -1,30 +1,37 @@
 const express = require('express');
-const http = require('https').createServer(app);
-const io = require(socket.io)(http)
-
+const path = require('path');
 const app = express();
-const PORT = 3000;
 
+// 👇 Creamos servidor HTTP a partir de la app
+const http = require('http').createServer(app);
+
+// 👇 Inicializamos Socket.io con ese servidor HTTP
+const { Server } = require('socket.io');
+const io = new Server(http);
+
+// Middlewares
 app.use(express.json());
-app.use(express.urlencoded({ extended : true }));
-app.use(express.static(path.join(__dirname, '/public')));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
+
+const PORT = 3000;
 
 let messages = [];
 
-//configuracion Socket.io
+// Configuración de socket.io
 io.on('connection', (socket) => {
-    socket.emit("messageList", messages);
-    console.log("Nuevo cliente se ha conectado");
+    console.log('Nuevo cliente conectado:', socket.id);
+
+    socket.emit('messageList', messages);
 
     socket.on('newMessage', (message) => {
-        messages.push(message);
-        io.emit('newMessage', {
-            socketId : socket.id, message: message
-        })
-    })
-})
+        const msg = { socketId: socket.id, message };
+        messages.push(msg);
+        io.emit('newMessage', msg);
+    });
+});
 
-
-app.listen(PORT, () => {
-    console.log(`Server runing in port ${PORT}`);
+// 👇 Usamos http.listen en lugar de app.listen
+http.listen(PORT, () => {
+    console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
