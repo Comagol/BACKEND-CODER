@@ -75,5 +75,16 @@
     "stock": 7,
     "category": "Electrónica",
     "status": true
+  },
+  {
+    "id": 8,
+    "title": "mackbook air",
+    "description": "mackbook air 2024 m2 ",
+    "price": 1000,
+    "thumbnail": "https://via.placeholder.com/150",
+    "code": "mack001",
+    "stock": 7,
+    "category": "Electrónica",
+    "status": true
   }
 ]
