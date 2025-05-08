@@ -29,4 +29,19 @@ async function main() {
   }
 }
 
+async function buscarUsuarioPorNombre(nombre) {
+    try {
+      const usuario = await usersCollection.findOne({ nombre: nombre });
+  
+      if (usuario) {
+        console.log("Usuario encontrado:");
+        console.log(usuario);
+      } else {
+        console.log("No se encontró ningún usuario con ese nombre.");
+      }
+    } catch (error) {
+      console.error("Error al buscar el usuario:", error);
+    }
+  }
+
 main();
