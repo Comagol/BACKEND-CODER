@@ -1,0 +1,115 @@
+<div class="container mt-4">
+    <h1>Productos</h1>
+    
+    <!-- Filtros y ordenamiento -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="input-group">
+                <select class="form-select" id="categoryFilter">
+                    <option value="">Todas las categorías</option>
+                    <option value="electronics">Electrónicos</option>
+                    <option value="clothing">Ropa</option>
+                    <option value="books">Libros</option>
+                </select>
+                <select class="form-select" id="sortOrder">
+                    <option value="">Ordenar por precio</option>
+                    <option value="asc">Menor a Mayor</option>
+                    <option value="desc">Mayor a Menor</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lista de productos -->
+    <div class="row" id="productsList">
+        {{#each payload}}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <img src="{{this.thumbnail}}" class="card-img-top" alt="{{this.title}}">
+                <div class="card-body">
+                    <h5 class="card-title">{{this.title}}</h5>
+                    <p class="card-text">{{this.description}}</p>
+                    <p class="card-text"><strong>Precio: ${{this.price}}</strong></p>
+                    <p class="card-text">Categoría: {{this.category}}</p>
+                    <p class="card-text">Stock: {{this.stock}}</p>
+                    <div class="d-flex justify-content-between">
+                        <a href="/products/{{this._id}}" class="btn btn-primary">Ver detalles</a>
+                        <button class="btn btn-success add-to-cart" data-product-id="{{this._id}}">Agregar al carrito</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+
+    <!-- Paginación -->
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            {{#if hasPrevPage}}
+            <li class="page-item">
+                <a class="page-link" href="{{prevLink}}">Anterior</a>
+            </li>
+            {{/if}}
+            
+            <li class="page-item active">
+                <span class="page-link">Página {{page}} de {{totalPages}}</span>
+            </li>
+            
+            {{#if hasNextPage}}
+            <li class="page-item">
+                <a class="page-link" href="{{nextLink}}">Siguiente</a>
+            </li>
+            {{/if}}
+        </ul>
+    </nav>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Manejar filtros
+    const categoryFilter = document.getElementById('categoryFilter');
+    const sortOrder = document.getElementById('sortOrder');
+    
+    function updateFilters() {
+        const category = categoryFilter.value;
+        const sort = sortOrder.value;
+        const currentUrl = new URL(window.location.href);
+        
+        if (category) currentUrl.searchParams.set('query', category);
+        else currentUrl.searchParams.delete('query');
+        
+        if (sort) currentUrl.searchParams.set('sort', sort);
+        else currentUrl.searchParams.delete('sort');
+        
+        window.location.href = currentUrl.toString();
+    }
+    
+    categoryFilter.addEventListener('change', updateFilters);
+    sortOrder.addEventListener('change', updateFilters);
+    
+    // Manejar agregar al carrito
+    const addToCartButtons = document.querySelectorAll('.add-to-cart');
+    addToCartButtons.forEach(button => {
+        button.addEventListener('click', async function() {
+            const productId = this.dataset.productId;
+            try {
+                const response = await fetch(`/api/carts/{{cartId}}/products/${productId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    alert('Producto agregado al carrito');
+                } else {
+                    alert('Error al agregar el producto al carrito');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error al agregar el producto al carrito');
+            }
+        });
+    });
+});
+</script> 
