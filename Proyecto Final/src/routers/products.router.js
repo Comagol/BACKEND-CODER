@@ -1,11 +1,7 @@
 // products.router.js
 
 const express = require('express');
-const ProductManager = require('../managers/ProductManager');
-const path = require('path');
 const Product = require('../models/Product');
-
-const productManager = new ProductManager(path.join(__dirname, '../products.json'));
 
 function getProductsRouter(io) {
     const router = express.Router();

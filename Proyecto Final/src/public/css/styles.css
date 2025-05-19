@@ -1,0 +1,33 @@
+.card {
+    transition: transform 0.2s ease-in-out;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.btn-primary {
+    width: 100%;
+    margin-top: auto;
+}
+
+.pagination {
+    margin-top: 2rem;
+}
+
+.form-select {
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+    .col-md-4 {
+        margin-bottom: 1rem;
+    }
+} 

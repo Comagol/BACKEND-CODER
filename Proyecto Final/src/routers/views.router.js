@@ -1,26 +1,20 @@
 const express = require('express');
 const path = require('path');
 const router = express.Router();
-const ProductManager = require('../managers/ProductManager');
 const Product = require('../models/Product');
 const Cart = require('../models/Cart');
 
-//uso la ruta del archivo products.json
-const productManager = new ProductManager(
-    path.join(__dirname, '../products.json')
-);
-
 // la ruta home va a mostrar todos los productos actuales
 router.get('/', async (req, res) => {
-    try{
-        const products = await productManager.getProducts();
-        res.render('home', {products});
+    try {
+        const products = await Product.find().lean();
+        res.render('home', { products });
     } catch (error) {
         res.status(500).send('Error al cargar los productos');
     }
 });
 
-// La ruta realtimeproducts es la visat dinamica con websocket
+// La ruta realtimeproducts es la vista dinámica con websocket
 router.get('/realtimeproducts', (req, res) => {
     res.render('realTimeProducts');
 });
