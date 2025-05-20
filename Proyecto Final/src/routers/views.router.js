@@ -83,7 +83,7 @@ router.get('/products/:pid', async (req, res) => {
         }
 
         res.render('product-detail', {
-            product,
+            product: product.toObject(),
             cartId: cart._id
         });
     } catch (error) {
