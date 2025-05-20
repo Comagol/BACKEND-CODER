@@ -57,6 +57,7 @@ router.get('/products', async (req, res) => {
 
         res.render('products', {
             ...result,
+            payload: result.docs,
             prevLink,
             nextLink,
             cartId: cart._id
