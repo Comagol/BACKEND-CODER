@@ -15,14 +15,14 @@ Este proyecto es una aplicación de e-commerce desarrollada como proyecto final 
 
 - Node.js (v14 o superior)
 - MongoDB
-- npm o yarn
+- npm
 
 ## Instalación
 
 1. Clonar el repositorio:
 ```bash
-git clone <url-del-repositorio>
-cd proyecto-final
+git clone <https://github.com/Comagol/BACKEND-CODER.git>
+cd Proyecto Final
 ```
 
 2. Instalar dependencias:
@@ -63,6 +63,7 @@ src/
 
 ### Carritos
 
+- `GET /api/carts` - Obtener todos los carrito
 - `GET /api/carts/:cid` - Obtener un carrito específico
 - `POST /api/carts` - Crear un nuevo carrito
 - `POST /api/carts/:cid/products/:pid` - Agregar producto al carrito
@@ -93,7 +94,3 @@ La API de productos soporta los siguientes parámetros de consulta:
 3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
 4. Push a la rama (`git push origin feature/AmazingFeature`)
 5. Abrir un Pull Request
-
-## Licencia
-
-Este proyecto está bajo la Licencia MIT. 
